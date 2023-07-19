@@ -2,8 +2,17 @@ import { FormItem } from "../../App";
 import './FormFooter.css';
 
 type FormFooterProps = {
+	/**
+	 * Current service fee.
+	 */
 	fee: number;
+	/**
+	 * Current form data.
+	 */
 	data: FormItem[];
+	/**
+	 * Callback for the Clear data button.
+	 */
 	onClearData: () => void;
 }
 

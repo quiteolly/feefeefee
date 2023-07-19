@@ -4,11 +4,31 @@ import './ItemInput.css';
 import { FormItem } from '../../App';
 
 type ItemInputProps = {
+	/**
+	 * Current service fee.
+	 */
 	fee: number;
+	/**
+	 * Form item data.
+	 */
 	item: FormItem;
+	/**
+	 * Whether to show the Remove button.
+	 */
 	showRemoveButton: boolean;
+	/**
+	 * Whether to focus on the current form item.
+	 */
 	autoFocus: boolean;
+	/**
+	 * Callback for changes in the current form item.
+	 * @param data Current form item data.
+	 */
 	onChange: (data: FormItem) => void;
+	/**
+	 * Callback for the form item removal event.
+	 * @param data Current form item data.
+	 */
 	onRemove: (data: FormItem) => void;
 }
 
@@ -32,6 +52,9 @@ export default function ItemInput({
 		value: item.value,
 	});
 
+	/**
+	 * @param value Price in the menu.
+	 */
 	function handleChange(value: string) {
 		const result = {
 			...data,

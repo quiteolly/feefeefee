@@ -1,4 +1,7 @@
 type AddItemButtonProps = {
+	/**
+	 * Callback for the Add item button.
+	 */
 	onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 

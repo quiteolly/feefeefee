@@ -5,6 +5,10 @@ import data, { RestaurantInfo, VAT_VALUE } from '../../data';
 import './SearchInput.css';
 
 type SearchInputProps = {
+	/**
+	 * Callback for the form submission events.
+	 * @param value Current form value.
+	 */
 	onSubmit: (value: string | RestaurantInfo) => void;
 }
 
@@ -13,13 +17,76 @@ export default function SearchInput({
 }: SearchInputProps) {
 	const [value, setValue] = useState('');
 
-	function compareItemName(query: string, name: string) {
-		const original = name.toLowerCase().replace(/-/g, ' ');
+	/**
+	 * Get title in the preferred language for an autocomplete option.
+	 * @returns Title in the preferred language, English or null.
+	 */
+	function getOptionTitle(item: RestaurantInfo) {
+		if (!item) {
+			return null;
+		}
+		return item.en;
+	}
+
+	/**
+	 * Get other languages for an autocomplete option.
+	 * @returns List of other 
+	 */
+	function getOptionLangs(item: RestaurantInfo) {
+		return [
+			{ lang: 'ka', value: item.ka },
+			{ lang: 'ru', value: item.ru },
+		].filter(lang => lang.value);
+	}
+
+	/**
+	 * Render the service fee for an autocomplete option.
+	 * @returns Service fee amount.
+	 */
+	function renderOptionFee(item: RestaurantInfo) {
+		if (item.fee === 'vat') {
+			const clarify = !item.en.includes('VAT');
+			return (clarify ? 'VAT/' : '') + (VAT_VALUE * 100) + '%';
+		}
+
+		return (item.fee * 100).toFixed(0) + '%';
+	}
+
+	/**
+	 * Render an HTML template for accessible-autocomplete.
+	 * accessible-autocomplete docs: https://github.com/alphagov/accessible-autocomplete#templates-default-undefined
+	 * @returns HTML (API does not support React elements) of the rendered option.
+	 */
+	function renderOption(item: RestaurantInfo) {
+		if (!item) {
+			return null;
+		}
+
+		return `<div>
+			<p>${getOptionTitle(item)}</p>
+			<ul class="search__listbox-langs">
+				${getOptionLangs(item).map(l => `<li lang=${l.lang}>${l.value}</li>`).join('')}
+			</ul>
+		</div>
+		<div>${renderOptionFee(item)}</div>`;
+	}
+
+	/**
+	 * Compare two strings in lowercase and with hyphens removed.
+	 * @returns Whether one string contains another one.
+	 */
+	function compareItemName(query: string, value: string) {
+		const original = value.toLowerCase().replace(/-/g, ' ');
 		const val = query.toLowerCase().replace(/-/g, ' ');
 		return original.includes(val);
 	}
 
-	function filterResults(query: string, item: RestaurantInfo) {
+	/**
+	 * Filter a result based on whether some data in the current item matches.
+	 * @param query Current query.
+	 * @param item Georgian restaurant data.
+	 */
+	function filterResult(query: string, item: RestaurantInfo) {
 		return !query
 		// Compare to languages
 		|| compareItemName(query, item['en'])
@@ -29,48 +96,13 @@ export default function SearchInput({
 		|| item.aliases.findIndex(a => compareItemName(query, a)) > -1
 	}
 
-	function renderItemTitle(item: RestaurantInfo) {
-		return item.en;
-	}
-
-	function renderItemLangs(item: RestaurantInfo) {
-		return [
-			{ lang: 'ka', value: item.ka },
-			{ lang: 'ru', value: item.ru },
-		].filter(lang => lang.value);
-	}
-
-	function renderItemFee(item: RestaurantInfo) {
-		if (item.fee === 'vat') {
-			const clarify = !item.en.includes('VAT');
-			return (clarify ? 'VAT/' : '') + (VAT_VALUE * 100) + '%';
-		}
-
-		return (item.fee * 100).toFixed(0) + '%';
-	}
-
-	function renderOption(result: RestaurantInfo) {
-		if (!result) {
-			return null;
-		}
-
-		// This field does not support React elements, only inner HTML
-		return `<div>
-			<p>${renderItemTitle(result)}</p>
-			<ul class="search__listbox-langs">
-				${renderItemLangs(result).map(l => `<li lang=${l.lang}>${l.value}</li>`).join('')}
-			</ul>
-		</div>
-		<div>${renderItemFee(result)}</div>`;
-	}
-
-	function getInputValue(result: RestaurantInfo) {
-		if (!result) {
-			return null;
-		}
-		return result?.en;
-	}
-
+	/**
+	 * Called when updating the autocomplete.
+	 * accessible-autocomplete docs: https://github.com/alphagov/accessible-autocomplete#source
+	 * @param query Value from input field.
+	 * @param syncResults Function to populate the results.
+	 * @returns Data in the results.
+	 */
 	function suggest(query: string, syncResults: (values: RestaurantInfo[]) => void) {
 		setValue(query);
 		if (!query) {
@@ -78,7 +110,7 @@ export default function SearchInput({
 			return data;
 		}
 
-		const filteredData = data.filter(item => filterResults(query, item));
+		const filteredData = data.filter(item => filterResult(query, item));
 		syncResults(filteredData);
 		return filteredData;
 	}
@@ -99,6 +131,11 @@ export default function SearchInput({
 		}
 	}
 
+	/**
+	 * Called when the user confirms an option, with the option they've confirmed.
+	 * accessible-autocomplete docs: https://github.com/alphagov/accessible-autocomplete#onconfirm-default---
+	 * @param result Selected option.
+	 */
 	function onConfirm(result: RestaurantInfo | undefined) {
 		if (!result) return;
 
@@ -119,7 +156,7 @@ export default function SearchInput({
 						dropdownArrow={() => ''}
 						showNoOptionsFound={false}
 						templates={{
-							inputValue: getInputValue,
+							inputValue: getOptionTitle,
 							suggestion: renderOption,
 						}}
 					/>

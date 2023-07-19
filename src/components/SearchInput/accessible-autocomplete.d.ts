@@ -1,3 +1,9 @@
+/**
+ * Mostly copied from https://github.com/alphagov/accessible-autocomplete/issues/535
+ * 
+ * @license none
+ * @author icoloma, quiteolly
+ */
 declare module 'accessible-autocomplete/react' {
 	import { ReactElement } from 'react-markdown/lib/react-markdown';
 

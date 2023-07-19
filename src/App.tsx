@@ -7,22 +7,44 @@ import FormFooter from './components/FormFooter/FormFooter';
 import AddItemButton from './components/AddItemButton/AddItemButton';
 import { RestaurantInfo, VAT_VALUE } from './data';
 
+/**
+ * Report form URL.
+ */
+const REPORT_FORM_URL = 'https://forms.office.com/r/Uw65SN83Uj';
+
+/**
+ * localStorage key used for fetching data.
+ */
+const STORAGE_KEY = 'app-data';
+
+/**
+ * An item in a form.
+ */
 export type FormItem = {
+	/**
+	 * Randomised ID for React purposes.
+	 */
 	id: string;
+	/**
+	 * Item input value.
+	 */
 	value: string;
 }
 
-const REPORT_FORM_URL = 'https://forms.office.com/r/Uw65SN83Uj';
-const STORAGE_KEY = 'app-data';
-
-function getNewItem() {
+/**
+ * @returns A new blank form item.
+ */
+function getNewItem(): FormItem {
 	return {
 		id: Math.random().toString().replace('0.', ''),
 		value: '',
 	}
 }
 
-function getFormData() {
+/**
+ * @returns Existing localStorage data or a blank form with 1 item.
+ */
+function getFormData(): FormItem[] {
 	try {
 		const data = localStorage.getItem(STORAGE_KEY);
 		if (data === null) {

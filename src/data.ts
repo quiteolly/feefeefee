@@ -1,13 +1,37 @@
+/**
+ * Georgian restaurant info.
+ */
 export type RestaurantInfo = {
+	/**
+	 * English name.
+	 */
 	en: string;
+	/**
+	 * Georgian name.
+	 */
 	ka: string;
+	/**
+	 * Russian name.
+	 */
 	ru: string;
+	/**
+	 * Aliases that do not match any symbols in English, Georgian, or Russian names.
+	 */
 	aliases: string[];
+	/**
+	 * Service fee (a number from 0 to 1 or 'vat').
+	 */
 	fee: number | 'vat';
 };
 
+/**
+ * Current VAT amount in Georgia.
+ */
 export const VAT_VALUE = 0.18;
 
+/**
+ * If your restaurant is not in this list, we’re good.
+ */
 const data: RestaurantInfo[] = [
 	{
 		en: 'VAT',
@@ -16,7 +40,8 @@ const data: RestaurantInfo[] = [
 		aliases: [
 			'value added tax',
 			'დამატებული ღირებულების გადასახადი',
-			'налог на добавленную стоимость', // not from above
+			'налог на добавленную стоимость',
+			// Not from any words above
 		],
 		fee: 'vat',
 	},
@@ -35,6 +60,16 @@ const data: RestaurantInfo[] = [
 		fee: 0.1,
 	},
 	{
+		en: 'Brotplatz',
+		ka: 'ბროტპლატცი',
+		ru: 'Бротплатц',
+		aliases: [
+			'Бротплац',
+			// Not from any words above
+		],
+		fee: 0.1,
+	},
+	{
 		en: 'Cafe Daphna',
 		ka: 'კაფე დაფნა',
 		ru: 'Кафе Дафна',
@@ -46,6 +81,16 @@ const data: RestaurantInfo[] = [
 		ka: 'დუბლინი',
 		ru: 'Дублин',
 		aliases: [],
+		fee: 'vat',
+	},
+	{
+		en: 'Hello Breakfast',
+		ka: '',
+		ru: 'Хеллоу-брэкфаст',
+		aliases: [
+			'Хэлоу-брекфаст',
+			// Not from any words above
+		],
 		fee: 'vat',
 	},
 	{
@@ -82,12 +127,22 @@ const data: RestaurantInfo[] = [
 	{
 		en: 'Machakhela Samikitno',
 		ka: 'მაჭახელა სამიკიტნო',
-		ru: 'Мачахела-Самикитно',
+		ru: 'Мачахэла-Самикитно',
 		aliases: [
-			'Мачахэла',
+			'Мачахела',
 			// Not from any words above
 		],
 		fee: 0.15,
+	},
+	{
+		en: 'N1 Steakhouse',
+		ka: 'სტეიკჰაუსი#1',
+		ru: 'Стэйкхаус №1',
+		aliases: [
+			'Стейкхаус №1',
+			// Not from any words above
+		],
+		fee: 'vat',
 	},
 	{
 		en: 'Pasanauri',
@@ -104,10 +159,14 @@ const data: RestaurantInfo[] = [
 		fee: 0.1,
 	},
 	{
-		en: 'Sofia Melnikova\'s Fantastic Douqan',
+		en: "Sofia Melnikova's Fantastic Douqan",
 		ka: 'სოფია მელნიკოვას ფანტასტიური დუქანი',
 		ru: 'Фантастический дукан Софии Мельниковой',
-		aliases: [],
+		aliases: [
+			'Fantastic Doukan',
+			'Fantastic Dukan',
+			// Not from any words above
+		],
 		fee: 'vat',
 	},
 	{
@@ -123,6 +182,13 @@ const data: RestaurantInfo[] = [
 		ru: 'Тифлиси-Воронцовзе',
 		aliases: [],
 		fee: 0.15,
+	},
+	{
+		en: 'Umami',
+		ka: 'უმამი',
+		ru: 'Умами',
+		aliases: [],
+		fee: 'vat',
 	},
 	{
 		en: 'Veliaminov',
