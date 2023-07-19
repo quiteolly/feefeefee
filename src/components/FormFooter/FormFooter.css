@@ -1,0 +1,18 @@
+.form-footer {
+	align-items: flex-start;
+	background: #3f3f46;
+	bottom: 0;
+	display: flex;
+	justify-content: space-between;
+	margin: 2em -1em 1em;
+	padding: 1em;
+	position: sticky;
+}
+
+.form-footer__price {
+	font-size: 1.5em;
+}
+
+.form-footer__price > strong {
+	color: #f87171;
+}

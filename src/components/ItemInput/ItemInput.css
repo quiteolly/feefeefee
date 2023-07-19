@@ -1,0 +1,29 @@
+.item-input {
+	display: flex;
+	margin: 1em 0;
+}
+
+.item-input__field {
+	flex: 1;
+}
+
+.item-input__field > label {
+	display: block;
+}
+
+.item-input__price {
+	text-align: right;
+	min-width: 10em;
+}
+
+.item-input__real-price {
+	display: block;
+	font-size: 1.5em;
+	line-height: 1.25;
+	margin-top: 0.25em;
+}
+
+.item-input__real-price--unequal {
+	color: #f87171;
+	font-weight: bold;
+}

@@ -1,0 +1,57 @@
+:root {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+	color-scheme: dark;
+	color: #fff;
+	background-color: #09090b;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+input {
+	background: #27272a;
+	border: 2px solid;
+	color: inherit;
+	padding: 0.25em 0.5em;
+	width: 100%;
+}
+
+input:focus {
+	outline: 2px solid #ca8a04;
+	outline-offset: 2px;
+}
+
+label {
+	display: block;
+	margin-bottom: 0.25em;
+}
+
+button {
+	background: none;
+	border: 0;
+	border-bottom: 2px dotted;
+	color: inherit;
+	font-weight: bold;
+	padding: 0;
+}
+
+a {
+	color: #fff;
+	text-underline-offset: 0.15em;
+}
+
+/* Provide visual hiding for accessibility */
+.sr-only:not(:focus):not(:active),
+.sr-always {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}

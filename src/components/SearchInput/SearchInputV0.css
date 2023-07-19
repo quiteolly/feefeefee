@@ -1,0 +1,84 @@
+.search__wrapper {
+	display: flex;
+	position: relative;
+}
+
+.search__input {
+	flex: 1;
+}
+
+.search__button {
+	background: #000;
+	border: 2px solid #000;
+	color: #fff;
+	display: grid;
+	place-items: center;
+	padding: 0 0.5em;
+}
+
+.search__button > svg {
+	display: block;
+}
+
+.search__listbox {
+	background: #fff;
+	border: 2px solid;
+	list-style: none;
+	margin: -2px 0 0;
+	max-height: 80vh;
+	overflow-y: auto;
+	padding: 0;
+	position: absolute;
+	scrollbar-width: thin;
+	width: 100%;
+	max-width: 30em;
+	z-index: 5;
+}
+
+.search__listbox-item {
+	cursor: pointer;
+	display: flex;
+	gap: 2em;
+	justify-content: space-between;
+	padding: 0.25em 0.5em;
+}
+
+.search__listbox-item + .search__listbox-item {
+	border-top: 2px solid;
+}
+
+.search__listbox-item:hover,
+.search__listbox-item[aria-selected="true"] {
+	background: #07c;
+	border-color: #000;
+	color: #fff;
+}
+
+.search__listbox-item--no-results {
+	color: #777;
+	cursor: not-allowed;
+}
+
+.search__listbox-item p {
+	margin: 0;
+}
+
+.search__listbox-item p:empty {
+	display: none;
+}
+
+.search__listbox-langs {
+	font-size: 85%;
+	list-style: none;
+	padding: 0;
+	white-space: normal;
+}
+
+.search__listbox-langs > li {
+	display: inline;
+}
+
+.search__listbox-langs > li:not(:last-child)::after {
+	content: '\00a0· ';
+	font-weight: bold;
+}

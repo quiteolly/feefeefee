@@ -1,0 +1,51 @@
+.App {
+	margin: 1em auto;
+	/* margin-top: 2em; */
+	padding: 0 1em;
+	max-width: 30em;
+}
+
+.App__heading {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 2em;
+	margin: 0 0 0.25em;
+}
+
+.App__heading > img {
+	margin-right: 0.5em;
+}
+
+.App__heading > em {
+	background: #dc2626;
+	border-radius: 0.5em;
+	color: #fff;
+	font-style: normal;
+	font-size: 1.25rem;
+	margin-left: auto;
+	padding: 0.125em 0.5em;
+}
+
+.App__intro {
+	color: #a1a1aa;
+	margin-bottom: 1em;
+}
+
+.App__langs {
+	background: #18181b;
+	color: #fff;
+	display: flex;
+	flex-wrap: wrap;
+	left: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0.25em 1em;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.App__langs > li + li {
+	margin-left: 1em;
+}
