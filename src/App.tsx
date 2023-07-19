@@ -106,7 +106,7 @@ function App() {
 	return (
 		<main className="App">
 			<h1 className="App__heading">
-				<img src="/logo.svg" alt="" />
+				<img src="/logo.svg" alt="" width="96" height="96" loading="lazy" />
 				<div>feefeefee</div>
 				{fee !== 0 && (
 					<em>+{(fee * 100).toFixed(0)}%</em>
