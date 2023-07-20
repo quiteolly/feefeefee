@@ -1,0 +1,19 @@
+.lang-selector {
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.lang-selector > li + li {
+	margin-left: 1em;
+}
+
+.lang-selector__item > button {
+	font-weight: inherit;
+}
+
+.lang-selector__item--selected {
+	font-weight: bold;
+}

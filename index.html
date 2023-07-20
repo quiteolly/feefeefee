@@ -2,13 +2,29 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="/index.css">
 		<link rel="icon" type="image/svg+xml" href="/logo.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title data-title="feefeefee">feefeefee</title>
+		<title>feefeefee (ფიფიფი)</title>
+		<meta property="og:title" content="feefeefee (ფიფიფი)" />
+		<meta name="description" content="Calculate real prices in Georgian restaurants, with service fees included" />
+		<meta property="og:description" content="Calculate real prices in Georgian restaurants, with service fees included" />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="https://feefeefee.netlify.app/logo.png" />
+		<meta property="og:image:width" content="512" />
+		<meta property="og:image:height" content="512" />
+		<meta property="twitter:card" content="summary" />
 	</head>
 	<body>
 		<div id="root">
-			<noscript>This app does not work without JavaScript.</noscript>
+			<noscript>
+				<div>
+					<h1><img src="/logo.svg" alt="feefeefee (ფიფიფი)" width="96" height="96"></h1>
+					<div lang="en">feefeefee requires JavaScript to work.</div>
+					<div lang="ka">ფიფიფი ითხოვს JavaScript-ს.</div>
+					<div lang="ru">фифифи не работает без Джаваскрипта.</div>
+				</div>
+			</noscript>
 		</div>
 		<script type="module" src="/src/main.tsx"></script>
 	</body>

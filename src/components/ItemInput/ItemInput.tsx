@@ -1,9 +1,14 @@
-import { useState } from 'react';
 import './ItemInput.css';
+import { useState } from 'react';
 
+import { I18nValidLang, i18n } from '../../i18n';
 import { FormItem } from '../../App';
 
 type ItemInputProps = {
+	/**
+	 * Current interface language.
+	 */
+	lang: I18nValidLang;
 	/**
 	 * Current service fee.
 	 */
@@ -30,22 +35,27 @@ type ItemInputProps = {
 	 * @param data Current form item data.
 	 */
 	onRemove: (data: FormItem) => void;
+	/**
+	 * Render a price correctly, see App.tsx.
+	 */
+	renderPrice: (value: number, showCurrency?: boolean) => string,
 }
 
 export default function ItemInput({
+	lang,
 	fee,
 	item,
 	showRemoveButton,
 	autoFocus,
 	onChange,
 	onRemove,
+	renderPrice,
 }: ItemInputProps) {
 	let value = Number(item.value);
 	if (isNaN(value)) {
 		value = 0;
 	}
 
-	const realPrice = (value + value * fee).toFixed(2).replace(/\.?0+$/, '');
 	const isEqual = fee === 0;
 	const [data, setData] = useState<FormItem>({
 		id: item.id,
@@ -68,19 +78,25 @@ export default function ItemInput({
 	return (
 		<div className="item-input">
 			<div className="item-input__field">
-				<label htmlFor={`price-${data.id}`}>Price in the menu:</label>
-				<input type="text"
+				<label htmlFor={`price-${data.id}`} className="item-input__label">
+					{i18n(lang, 'itemInputLabel')}
+				</label>
+				<input
+					type="text"
 					id={`price-${data.id}`}
+					className="item-input__input"
 					value={data.value}
 					onChange={(e) => handleChange(e.currentTarget.value)}
 					autoFocus={autoFocus}
 				/>
 			</div>
 			<div className="item-input__price">
-				<div>Real price:</div>
-				<div className={`item-input__real-price ${!isEqual && 'item-input__real-price--unequal'}`}>{realPrice}&nbsp;₾</div>
+				<p>{i18n(lang, 'itemInputPrice')}</p>
+				<p className={`item-input__real-price ${!isEqual && 'item-input__real-price--unequal'}`}>{renderPrice(value + value * fee)}</p>
 				{showRemoveButton && <div>
-					<button type="button" onClick={() => onRemove(data)}>Remove</button>
+					<button type="button" onClick={() => onRemove(data)}>
+						{i18n(lang, 'itemInputRemove')}
+					</button>
 				</div>}
 			</div>
 		</div>

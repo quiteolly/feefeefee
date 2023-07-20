@@ -1,7 +1,13 @@
-import { FormItem } from "../../App";
 import './FormFooter.css';
 
+import { I18nValidLang, i18n } from '../../i18n';
+import { FormItem } from '../../App';
+
 type FormFooterProps = {
+	/**
+	 * Current interface language.
+	 */
+	lang: I18nValidLang;
 	/**
 	 * Current service fee.
 	 */
@@ -14,36 +20,56 @@ type FormFooterProps = {
 	 * Callback for the Clear data button.
 	 */
 	onClearData: () => void;
+	/**
+	 * Render a price correctly, see App.tsx.
+	 */
+	renderPrice: (value: number, showCurrency?: boolean) => string,
 }
 
 export default function FormFooter({
+	lang,
 	fee,
 	data,
 	onClearData,
+	renderPrice,
 }: FormFooterProps) {
 	let result = 0;
 	let actualResult = 0;
-	for (let i = 0; i < data.length; i++) {
-		const element = data[i];
-		const value = Number(element.value).toFixed(2);
+	data.forEach(item => {
+		const value = Number(item.value).toFixed(2);
 		
 		result = result + Number(value);
 		actualResult = actualResult + Number(value) + Number(value) * fee;
-	}
+	});
 
 	const equalPrice = result === actualResult;
+
+	function renderReadablePrice(price: number, showCurrency = true) {
+		return renderPrice(price, showCurrency).replace(/[.,]?0+$/, '');
+	}
+
+	function onClearButtonClick() {
+		const dialog = confirm(i18n(lang, 'formFooterClearDialog'));
+		if (dialog) {
+			onClearData();
+		}
+	}
 
 	return (
 		<div className="form-footer">
 			<div>
-				<div>Sum:</div>
+				<h2 className="form-footer__heading">{i18n(lang, 'formFooterSum')}</h2>
 				<div className="form-footer__price">
-					{result.toFixed(2)}{equalPrice && <span>&nbsp;₾</span>}
+					{renderReadablePrice(result, lang === 'en' || equalPrice)}
 					{!equalPrice && '/'}
-					{!equalPrice && <strong>{actualResult.toFixed(2)}&nbsp;₾</strong>}
+					{!equalPrice && <strong>{renderReadablePrice(actualResult)}</strong>}
 				</div>
 			</div>
-			<div><button type="button" onClick={onClearData}>Clear data</button></div>
+			<div>
+				<button type="button" onClick={onClearButtonClick}>
+					{i18n(lang, 'formFooterClearButton')}
+				</button>
+			</div>
 		</div>
 	);
 }

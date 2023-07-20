@@ -1,0 +1,15 @@
+.add-item-button {
+	background: #0284c7;
+	border: 2px solid;
+	border-radius: 0.25em;
+	color: #000;
+	font-weight: bold;
+	padding: 0.5em 1em;
+}
+
+.add-item-button:hover,
+.add-item-button:focus,
+.add-item-button:active {
+	outline: 2px solid;
+	outline-offset: -6px;
+}

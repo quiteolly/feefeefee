@@ -7,8 +7,12 @@
 	flex: 1;
 }
 
-.item-input__field > label {
+.item-input__label {
 	display: block;
+}
+
+.item-input__input {
+	max-width: 15em;
 }
 
 .item-input__price {

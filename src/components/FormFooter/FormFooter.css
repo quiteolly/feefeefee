@@ -9,6 +9,11 @@
 	position: sticky;
 }
 
+.form-footer__heading {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
 .form-footer__price {
 	font-size: 1.5em;
 }

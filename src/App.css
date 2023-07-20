@@ -1,12 +1,12 @@
 .App {
 	margin: 1em auto;
-	/* margin-top: 2em; */
+	margin-top: 3em;
 	padding: 0 1em;
-	max-width: 30em;
+	max-width: 35em;
 }
 
 .App__heading {
-	align-items: center;
+	align-items: flex-end;
 	display: flex;
 	flex-wrap: wrap;
 	font-size: 2em;
@@ -17,7 +17,14 @@
 	margin-right: 0.5em;
 }
 
-.App__heading > em {
+.App__heading-subtitle {
+	display: block;
+	font-weight: normal;
+	font-size: 1.25rem;
+	line-height: 1;
+}
+
+.App__heading-percentage {
 	background: #dc2626;
 	border-radius: 0.5em;
 	color: #fff;
@@ -29,23 +36,23 @@
 
 .App__intro {
 	color: #a1a1aa;
-	margin-bottom: 1em;
 }
 
 .App__langs {
 	background: #18181b;
 	color: #fff;
-	display: flex;
-	flex-wrap: wrap;
 	left: 0;
-	list-style: none;
-	margin: 0;
 	padding: 0.25em 1em;
 	position: absolute;
 	right: 0;
 	top: 0;
 }
 
-.App__langs > li + li {
-	margin-left: 1em;
+button {
+	background: none;
+	border: 0;
+	border-bottom: 2px dotted;
+	color: inherit;
+	font-weight: bold;
+	padding: 0;
 }

@@ -1,9 +1,9 @@
+import 'modern-css-reset/dist/reset.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
 
-import 'modern-css-reset/dist/reset.css';
-import './index.css';
+import App from './App.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>

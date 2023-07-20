@@ -1,4 +1,11 @@
+import './AddItemButton.css';
+import { I18nValidLang, i18n } from '../../i18n';
+
 type AddItemButtonProps = {
+	/**
+	 * Current interface language.
+	 */
+	lang: I18nValidLang;
 	/**
 	 * Callback for the Add item button.
 	 */
@@ -6,9 +13,12 @@ type AddItemButtonProps = {
 }
 
 export default function AddItemButton({
+	lang,
 	onClick
 }: AddItemButtonProps) {
 	return (
-		<button type="button" onClick={onClick}>Add item</button>
+		<button className="add-item-button" type="button" onClick={onClick}>
+			{i18n(lang, 'addItemButton')}
+		</button>
 	);
 }

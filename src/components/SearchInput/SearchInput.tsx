@@ -1,21 +1,29 @@
+import './SearchInput.css';
 import { useState } from 'react';
 import AccessibleAutocomplete from 'accessible-autocomplete/react';
-import data, { RestaurantInfo, VAT_VALUE } from '../../data';
 
-import './SearchInput.css';
+import data, { RestaurantInfo, VAT_VALUE } from '../../data';
+import { I18nValidLang, LANGS, i18n, isValidLang } from '../../i18n';
 
 type SearchInputProps = {
+	/**
+	 * Current interface language.
+	 */
+	lang: I18nValidLang;
 	/**
 	 * Callback for the form submission events.
 	 * @param value Current form value.
 	 */
 	onSubmit: (value: string | RestaurantInfo) => void;
-}
+};
 
 export default function SearchInput({
+	lang,
 	onSubmit,
 }: SearchInputProps) {
 	const [value, setValue] = useState('');
+
+	const otherLangs = LANGS.filter(l => l.code !== lang);
 
 	/**
 	 * Get title in the preferred language for an autocomplete option.
@@ -25,7 +33,7 @@ export default function SearchInput({
 		if (!item) {
 			return null;
 		}
-		return item.en;
+		return item[lang] || item['en'];
 	}
 
 	/**
@@ -33,10 +41,15 @@ export default function SearchInput({
 	 * @returns List of other 
 	 */
 	function getOptionLangs(item: RestaurantInfo) {
-		return [
-			{ lang: 'ka', value: item.ka },
-			{ lang: 'ru', value: item.ru },
-		].filter(lang => lang.value);
+		const currentTitle = getOptionTitle(item);
+
+		return otherLangs.map(l => {
+			const code = l.code;
+			if (!isValidLang(code)) {
+				return { lang: code, value: '' };
+			}
+			return { lang: code, value: item[code] }
+		}).filter(lang => lang.value && lang.value !== currentTitle);
 	}
 
 	/**
@@ -46,7 +59,8 @@ export default function SearchInput({
 	function renderOptionFee(item: RestaurantInfo) {
 		if (item.fee === 'vat') {
 			const clarify = !item.en.includes('VAT');
-			return (clarify ? 'VAT/' : '') + (VAT_VALUE * 100) + '%';
+			const val = (VAT_VALUE * 100) + '%';
+			return (clarify ? i18n(lang, 'searchVat', [val]) : val);
 		}
 
 		return (item.fee * 100).toFixed(0) + '%';
@@ -115,6 +129,9 @@ export default function SearchInput({
 		return filteredData;
 	}
 
+	/**
+	 * Called when the form is submitted with no explicitly confirmed option.
+	 */
 	function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 
@@ -126,7 +143,7 @@ export default function SearchInput({
 			if (filteredData.length > 0) {
 				onSubmit(filteredData[0]);
 			} else {
-				alert(`What you entered (${value}) is not a number or a valid cafe.`);
+				alert(i18n(lang, 'searchInputInvalid', [value]));
 			}
 		}
 	}
@@ -145,7 +162,9 @@ export default function SearchInput({
 
 	return (
 		<form className="search" onSubmit={onFormSubmit}>
-			<label htmlFor="fff-search-input">Cafe name or percentage:</label>
+			<h2 className="search__label">
+				<label htmlFor="fff-search-input">{i18n(lang, 'searchInputLabel')}</label>
+			</h2>
 			<div className="search__wrapper">
 				<div className="search__input">
 					<AccessibleAutocomplete
@@ -159,11 +178,14 @@ export default function SearchInput({
 							inputValue: getOptionTitle,
 							suggestion: renderOption,
 						}}
+						tStatusSelectedOption={(selectedOption, length, index) => i18n(lang, 'searchInputListboxSelected', [selectedOption, length, index + 1])}
+						tStatusResults={(length, contentSelectedOption) => i18n(lang, 'searchInputListboxResults', [length, contentSelectedOption])}
+						tAssistiveHint={() => i18n(lang, 'searchInputListboxHint')}
 					/>
 				</div>
 				<button type="submit" className="search__button">
 					<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><g><path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8z" fill="currentColor"></path></g></svg>
-					<span className="sr-only">Search</span>
+					<span className="sr-only">{i18n(lang, 'searchInputButton')}</span>
 				</button>
 			</div>
 		</form>
