@@ -48,7 +48,7 @@ const data: RestaurantInfo[] = [
 	{
 		en: 'Ankara Style',
 		ka: 'ანკარა სთაილი',
-		ru: 'Анкара-Стайл',
+		ru: 'Анкара-стайл',
 		aliases: [],
 		fee: 0.15,
 	},
@@ -77,9 +77,23 @@ const data: RestaurantInfo[] = [
 		fee: 'vat',
 	},
 	{
+		en: 'Cloud9',
+		ka: '',
+		ru: 'Клауд9',
+		aliases: [],
+		fee: 0.18,
+	},
+	{
 		en: 'Dublin',
 		ka: 'დუბლინი',
 		ru: 'Дублин',
+		aliases: [],
+		fee: 'vat',
+	},
+	{
+		en: 'Ethnographer',
+		ka: 'ეთნოგრაფი',
+		ru: 'Этнографи',
 		aliases: [],
 		fee: 'vat',
 	},
@@ -135,6 +149,23 @@ const data: RestaurantInfo[] = [
 		fee: 0.15,
 	},
 	{
+		en: 'Maspindzelo',
+		ka: 'მასპინძელო',
+		ru: 'Маспиндзэло',
+		aliases: [
+			'Маспиндзэло',
+			// Not from any words above
+		],
+		fee: 'vat',
+	},
+	{
+		en: 'Organique Josper Bar',
+		ka: 'ორგანიკ ხოსპერ ბარი',
+		ru: 'Органик-хоспер-бар',
+		aliases: [],
+		fee: 0.1,
+	},
+	{
 		en: 'N1 Steakhouse',
 		ka: 'სტეიკჰაუსი#1',
 		ru: 'Стэйкхаус №1',
@@ -153,10 +184,17 @@ const data: RestaurantInfo[] = [
 	},
 	{
 		en: 'Sabatono',
-		ka: '',
+		ka: 'საბატონო',
 		ru: 'Сабатоно',
 		aliases: [],
 		fee: 0.1,
+	},
+	{
+		en: 'Sormoni',
+		ka: 'სორმონი',
+		ru: 'Сормони',
+		aliases: [],
+		fee: 0.12,
 	},
 	{
 		en: "Sofia Melnikova's Fantastic Douqan",
