@@ -39,6 +39,13 @@
 	display: block;
 }
 
+.search__listbox-title {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2em;
+	justify-content: space-between;
+}
+
 .search__listbox-langs {
 	font-size: 85%;
 	list-style: none;
@@ -86,14 +93,10 @@
 
 .autocomplete__option {
 	cursor: pointer;
-	display: flex;
-	gap: 2em;
-	justify-content: space-between;
 	padding: 0.25em 0.5em;
 }
 
-.autocomplete__option + .autocomplete__option,
-.search__listbox-item + .search__listbox-item {
+.autocomplete__option + .autocomplete__option {
 	border-top: 1px solid #a1a1aa;
 }
 

@@ -76,13 +76,13 @@ export default function SearchInput({
 			return null;
 		}
 
-		return `<div>
+		return `<div class="search__listbox-title">
 			<p>${getOptionTitle(item)}</p>
-			<ul class="search__listbox-langs">
-				${getOptionLangs(item).map(l => `<li lang=${l.lang}>${l.value}</li>`).join('')}
-			</ul>
+			<div>${renderOptionFee(item)}</div>
 		</div>
-		<div>${renderOptionFee(item)}</div>`;
+		<ul class="search__listbox-langs">
+			${getOptionLangs(item).map(l => `<li lang=${l.lang}>${l.value}</li>`).join('')}
+		</ul>`;
 	}
 
 	/**
