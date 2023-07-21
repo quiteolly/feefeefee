@@ -129,7 +129,7 @@ const data: RestaurantInfo[] = [
 			'Khinkalis Sakhli',
 			// Not from any words above
 		],
-		fee: 0.14,
+		fee: 0.15,
 	},
 	{
 		en: 'La Burrata',
@@ -180,6 +180,17 @@ const data: RestaurantInfo[] = [
 		ka: 'ფასანაური',
 		ru: 'Пасанаури',
 		aliases: [],
+		fee: 0.1,
+	},
+	{
+		en: "Pirosmani's Dukani",
+		ka: 'ფიროსმანის დუქანი',
+		ru: 'Дукан Пиросмани',
+		aliases: [
+			"Pirosmani's Douqan",
+			"Pirosmani's Doukan",
+			// Not from any words above
+		],
 		fee: 0.1,
 	},
 	{

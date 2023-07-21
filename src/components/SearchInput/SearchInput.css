@@ -107,6 +107,10 @@
 	outline: none;
 }
 
+.autocomplete__option--focused:focus {
+	outline: none;
+}
+
 .autocomplete__option--no-results {
 	color: #d4d4d8;
 	cursor: not-allowed;
