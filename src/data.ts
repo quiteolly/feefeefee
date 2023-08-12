@@ -77,6 +77,13 @@ const data: RestaurantInfo[] = [
 		fee: 'vat',
 	},
 	{
+		en: 'Cafe Stamba',
+		ka: 'კაფე სტამბა',
+		ru: 'Кафе Стамба',
+		aliases: [],
+		fee: 'vat',
+	},
+	{
 		en: 'Cloud9',
 		ka: '',
 		ru: 'Клауд9',
@@ -201,6 +208,13 @@ const data: RestaurantInfo[] = [
 		fee: 0.1,
 	},
 	{
+		en: 'Shatre',
+		ka: 'შატრე',
+		ru: 'Шатре',
+		aliases: [],
+		fee: 0.15,
+	},
+	{
 		en: 'Sormoni',
 		ka: 'სორმონი',
 		ru: 'Сормони',
@@ -219,10 +233,14 @@ const data: RestaurantInfo[] = [
 		fee: 'vat',
 	},
 	{
-		en: 'Cafe Stamba',
-		ka: 'კაფე სტამბა',
-		ru: 'Кафе Стамба',
-		aliases: [],
+		en: 'Stella Artois',
+		ka: 'სტელა არტუა',
+		ru: 'Стелла Артуа',
+		aliases: [
+			'Артоис',
+			'Артойс',
+			// Not from any words above
+		],
 		fee: 'vat',
 	},
 	{
