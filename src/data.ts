@@ -84,6 +84,13 @@ const data: RestaurantInfo[] = [
 		fee: 'vat',
 	},
 	{
+		en: 'Chashnagiri',
+		ka: 'ჭაშნაგირი',
+		ru: 'Чашнагири',
+		aliases: [],
+		fee: 0.15,
+	},
+	{
 		en: 'Cloud9',
 		ka: '',
 		ru: 'Клауд9',
